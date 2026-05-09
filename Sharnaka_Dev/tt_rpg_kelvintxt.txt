@@ -1,0 +1,63 @@
+TTRPG Systeme :
+
+
+Personnage : 
+	enum Race 
+	enum Espece 
+	int Stats
+	bool IsAlive
+	
+
+
+	Liste des races jouables (Les professions indiqués ne sont que des généralités) 
+Artilects,
+Astrel
+Cycléide
+Joricien
+Hipsy
+Lavia
+Aeris
+Akwo
+Pyris
+Litho
+Artilects +Selon le build -Selon le build Alaya technologique
+taille varialble, carrure variable, cheveux synthétiques, aspect proche de l’humain
+travaux pénibles répétitifs, serveur, esclave, service, « affranchis » 
+Astrel +Magie et Agilité/Dextérité -Constitution (Korrigan)Alaya stellaire
+petite taille, carrure fine, allure féline, mains de chat, oreilles pointues, grand yeux couleur étoile, peau pâle, vision dans le noir
+gestion des commerces de nuit 
+
+Cycléides +Constitution et Mental/Force -Intelligence Alaya Sanguine
+Grande taille, carure forte,peau claire à opaque mais plus rigide que de la la chair selon les individus, organes supplémentaires (généralement cœur). Structure corporelle simplifiée, yeux couleur nébuleuse
+Manutention diurne, travaux de force, garde de corps, Herboriste 
+Joricien +Charisme et Intelligence/Force -Dextérité (Orc) Alaya Biologique
+taille moyenne, carrure forte, crocs (morse), cheveux lisses, peau pâle et plus bronzée pour les plus aisés,
+histoire militaire, politicien, noble, généraux 
+Murci (Chauve-Souris) Alaya sonore
+Hipsy +Force et Agi/Perception. -Mental /Intelligence
+grande taille, carrure forte, oreilles longues et pointues, nez très volumineux pour vocaliser, crocs peu développés, fourrure dos et nuque, cheveux bouclés à crépus, écholocation, vision dans le noir
+Manutention nocturnes, garde de nuit
+Lavia +Intelligence et Dextérité/Perception -Constitution/Force
+petite taille, carrure fine, oreilles courtes et pointues, nez en datte, crocs développés, fourrure torse et cou, cheveux lisses à bouclés, vision dans le noir
+Travaux de précision nocturnes, bibliothèque 
+
+Tiefflin Alaya élémentaire
+Aeris +Aglité ou Mental
+taille moyenne, carrure fine, cornes torsadées grise/blanches/bleu clair, cheveux bouclés à crépus, peau tirant vers le bleu pastel/pâle, écholocation
+Artistes, Prêtres
+Amasseur de connaissances (Akwo)
+
+Akwo +Charisme ou Intelligence
+Grande taille, carrure fine, cornes bleues souples, cheveux lisses et bleu/vert, peau tirant vers le bleu roi/vert sapin, Proprioception humidité et plan d'eau
+Médécine et herboriste érudition
+Agriculteur (Litho), 
+
+Pyris +Force ou Magie
+taille moyenne, carrure moyenne, cornes cendrées ascendantes, cheveux indisciplinés, peau et yeux couleur brasier, Vue thermique
+Puissant mage, forgeron, armuriers, garnisons de la ville
+Souffleur de verre (Aeris)
+
+Litho +Constitution ou Dextérité 
+Petite taille, carrure forte, cornes de bouc, yeux couleur gemme, cheveux couleur d’une gemme, peau couleur roche ou terre, Transmurale tactile
+Aritisan de renom, architecture, archéologie
+Métallurgie (Pyris) 
