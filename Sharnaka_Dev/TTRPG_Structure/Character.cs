@@ -11,8 +11,8 @@ namespace Sharnaka_Dev.TTRPG_Structure
         public string Name { get; set; }
         public int Level { get; set; }
 
-        public Species species { get; set; }
-        public Race race {  get; set; }
+        public Species specie { get; set; }
+        public Races race {  get; set; }
 
         public bool IsAlive { get; set; }
     }
