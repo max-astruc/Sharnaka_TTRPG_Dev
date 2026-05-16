@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
+//<sumary>
+// Represents a wallet that can hold multiple currencies (Kato, Naka, Sharna) and allows for adding and removing money.
+// The wallet maintains a balance in the smallest currency (Kato) and provides methods to get the balance in different formats if needed 
+// A wallet can only have a positive balance, and attempts to remove more money than available will throw an exception (for now, we will not allow negative balances or debt unless planned otherwise).
+// A wallet can be associated with a character, but for simplicity, we will not implement that association in this class. It can be added as part of an object such as a Character class that contains a Wallet property.
+//
+//  NTS : In the future, we may want to implement features such as transaction history, support for multiple wallets per character, or the ability to transfer money between wallets. 
+//  For now, this class focuses on basic wallet functionality.
+//  Additionally, we may consider higher value currencies and werther we should only cast them as a new amount of Sharna or add them to the enumeraiton as needed. For now, we will stick to the three defined currencies and their exchange rates.
 
-
-   
-
-    int amount = 0; // Amount in the smallest currency (Kato) 
 
 public class Wallet
 {
-    int balance // Balance of the wallet in the smallest currency (Kato)
+    int balance; // Balance of the wallet in the smallest currency (Kato)
 
     public Wallet()
     {
@@ -30,35 +35,34 @@ public class Wallet
             throw new InvalidOperationException("Not enough funds, debt cannot be added.");
         balance -= katoAmount;
     }
-    public string GetBalance()
+    public string GetBalanceFull()
     {
         int sharna = balance / (int)Currency.Sharna;
         int naka = (balance  % (int)Currency.Sharna) / (int)Currency.Naka;
-        int kato = amount % (int)Currency.Naka;
+        int kato = balance % (int)Currency.Naka;
         return $"{sharna} Sharna, {naka} Naka, {kato} Kato";
+    }
+
+    public string GetBalanceKato() 
+    {
+        return $"{balance} Kato";
+    }
+
+    public string GetBalanceNaka()
+    {
+        double nakaBalance = (double)balance / (int)Currency.Naka;
+        return $"{nakaBalance} Naka";
+    }
+
+    public string GetBalanceSharna()
+    {
+        double sharnaBalance = (double)balance / (int)Currency.Sharna;
+        return $"{sharnaBalance} Sharna";
     }
 }
 
-//List<Currency> Wallet(int Kato_Amount, int Naka_Amount, int Sharna_Amount)
-//{
 
-//    var wallet = new List<Currency>(Kato_Amount + Naka_Amount + Sharna_Amount); // Pre-allocate list capacity
-
-//    if (Kato_Amount > 100) //: If the amount of Kato equals to 100, convert it to 1 Naka (next higher currecny) and add it to the wallet 
-//    {
-//        Naka_Amount++;
-//    }
-//    if (Sharna_Amount > 100)
-//    {
-//        Sharna_Amount++;
-//    }
-
-//    return wallet;
-//}
-
-
-
-private enum Currency
+public enum Currency
 {
     // Each currency has a 100:1 exchange rate with the next lower currency
     Kato = 1,             // smallest unit
