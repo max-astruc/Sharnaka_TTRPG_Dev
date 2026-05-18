@@ -8,11 +8,11 @@ namespace Sharnaka_Dev.TTRPG_Structure
 {
     internal class Character
     {
-        public string Name { get; set; }
-        public int Level { get; set; }
+        public string Char_name { get; set; }
+        public int Char_level { get; set; }
 
-        public Species specie { get; set; }
-        public Races race {  get; set; }
+        public Species? Char_specie { get; set; }
+        public Races? Char_race { get; set; }
 
         public Wallet? Char_wallet;
 
@@ -75,6 +75,39 @@ namespace Sharnaka_Dev.TTRPG_Structure
                 case Species.Joricien:
                     _char.Char_stats.Charisma += 1;
                     _char.Char_stats.Intelligence += 1;
+                    _char.Char_stats.Strength += 1;
+                    _char.Char_stats.Dexterity -= 1;
+                    break;
+
+                case Species.Murci:
+                    switch(_char.Char_race)
+                    {
+                        case Races.Murci_Lavia:
+                            _char.Char_stats.Intelligence += 1;
+                            _char.Char_stats.Dexterity += 1;
+                            _char.Char_stats.Perception += 1;
+                            _char.Char_stats.Strength -= 1;
+                            break;
+
+                        case Races.Murci_Hipsy:
+                            _char.Char_stats.Strength += 1;
+                            _char.Char_stats.Agility += 1;
+                            _char.Char_stats.Perception += 1;
+                            _char.Char_stats.Mental -= 1;
+                            break;
+                    } 
+                    break;
+
+                    case Species.Tiefflin:
+                        switch(_char.Char_race)
+                        {
+                            case Races.Tiefflin_Aeris:
+                                _char.Char_stats.Agility += 1;
+                                _char.Char_stats.Intelligence += 1;
+                                _char.Char_stats.Charisma += 1;
+                                _char.Char_stats.Constitution -= 1;
+                                break;
+                    }
                     break;
             }
         }
@@ -87,6 +120,8 @@ namespace Sharnaka_Dev.TTRPG_Structure
         public int Dexterity { get; set; }
         public int Constitution { get; set; }
         public int Intelligence { get; set; }
+
+        public int Perception { get; set; }
         public int Mental { get; set; }
         public int Charisma { get; set; }
 
@@ -99,6 +134,7 @@ namespace Sharnaka_Dev.TTRPG_Structure
             this.Intelligence = 10;
             this.Mental = 10;
             this.Charisma = 10;
+            this.Perception = 10;
         }
     }
 }

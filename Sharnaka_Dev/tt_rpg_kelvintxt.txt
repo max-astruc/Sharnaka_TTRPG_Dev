@@ -70,12 +70,12 @@ Coût     -6  -4  -3  -2 -1  0  1   3    4   6    7    7*
 
 *7 pts de Répartition + bonus racial 
 Bonus racial par espèce:
-Aeris +Aglité / Perception
-Akwo +Mental / Intelligence
+Tiefflin_Aeris +Aglité / Perception
+Tiefflin_Akwo +Mental / Intelligence
 Astrel +Mental et Agilité / Dextérité -Constitution
 Cycléides +Constitution et Mental / Force -Intelligence
-Hypsi +Force et Agilité / Perception. -Mental
+Murci_Hypsi +Force et Agilité / Perception. -Mental
 Joricien +Charisme et Intelligence / Force -Dextérité
-Lavia +Intelligence et Dextérité / Perception -Force
-Litho + Constitution / Dextérité
-Pyris+Force / Charisme
+Murci_Lavia +Intelligence et Dextérité / Perception -Force
+Thiefflin_Litho + Constitution / Dextérité
+Thieflin_Pyris +Force / Charisme
