@@ -103,9 +103,19 @@ namespace Sharnaka_Dev.TTRPG_Structure
                         {
                             case Races.Tiefflin_Aeris:
                                 _char.Char_stats.Agility += 1;
-                                _char.Char_stats.Intelligence += 1;
-                                _char.Char_stats.Charisma += 1;
-                                _char.Char_stats.Constitution -= 1;
+                                _char.Char_stats.Perception -= 1;
+                                break;
+                            case Races.Tiefflin_Akwo:
+                                _char.Char_stats.Mental += 1;
+                                _char.Char_stats.Intelligence -= 1;
+                                break;
+                            case Races.Tiefflin_Litho:
+                                _char.Char_stats.Constitution += 1;
+                                _char.Char_stats.Dexterity -= 1;
+                            break;
+                            case Races.Tiefflin_Pyris:
+                                _char.Char_stats.Strength += 1;
+                                _char.Char_stats.Charisma -= 1;
                                 break;
                     }
                     break;
