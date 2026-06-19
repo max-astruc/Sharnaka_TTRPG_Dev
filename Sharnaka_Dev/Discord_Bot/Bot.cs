@@ -10,18 +10,38 @@ using NetCord;
 // </summary>
 public class DiscordBot
 {
+    GatewayClient client;
+    string token;   
     DiscordBot()
     {
-        string token =
+        this.token =
         (            
             // Read the token from a file or environment variable
             // For example, you can read it from a file like this:
             File.ReadAllText("appsettings.json").Trim()
         );
 
-        GatewayClient client = new(new BotToken(token), new GatewayClientConfiguration
+        // Get the token from the string and create a new GatewayClient with the token
+        this.client = new(new BotToken(token), new GatewayClientConfiguration
         {
             Logger = new ConsoleLogger(),
         });
+
+        StartBot();
     }
+
+    // Async method to start the bot and keep it running indefinitely
+    async Task StartBot()
+    {
+        if (this.client != null)
+        {
+            await client.StartAsync();
+            await Task.Delay(-1); // Keep the bot running indefinitely
+        }
+        else
+        {
+            Console.WriteLine("Client is not initialized.");
+            throw new Exception("Client is not initialized. Some parameters are missing.");
+        }
+    }   
 }
