@@ -39,7 +39,7 @@ namespace Sharnaka_Dev.TTRPG_Structure
             this.Char_specie = specie;
             this.Char_race = race;
             this.Char_wallet = null; // Wallet is set to null by default, since it doesn't have to be implemented
-                                     // NTS : could be implemented for looting or 
+                                     // NTS : could be implemented for looting or stealing features, or merchants
             this.IsAlive = true; // Characters are alive by default, can be set to false for certain NPCs or as a result of gameplay events.
         }
 
@@ -54,16 +54,21 @@ namespace Sharnaka_Dev.TTRPG_Structure
             this.Char_wallet = new Wallet();  
             
             this.IsAlive = true; // Characters are alive by default
+            SetCharacterStats(this); // Set the character's stats based on their species and race and attribute the stats to the character's Char_stats property.
         }
 
         public void SetCharacterStats(Character _char)
         {
-            _char.Char_stats = new Stats(); // Initialize stats for the character, can be adjusted to allow for custom stat values if needed.
-            switch(_char.Char_specie)
+            _char.Char_stats = new Stats(); // Initialize stats for the character depending on race, can be adjusted to allow for custom stat values if needed.
+
+            // By defaiult, all species bonus/malus are increments/decrements of 1 point to the base stats, can be adjusted to allow for more complex stat modifications if needed.
+            switch (_char.Char_specie)
             {
                 case Species.Astrel:
                     _char.Char_stats.Agility += 1;
-                    _char.Char_stats.Intelligence += 2;
+                    _char.Char_stats.Dexterity += 1;
+                    _char.Char_stats.Mental += 1;
+                    _char.Char_stats.Constitution -=1;
                     break;
                 case Species.Cycléides:
                     _char.Char_stats.Constitution += 1;
@@ -93,7 +98,7 @@ namespace Sharnaka_Dev.TTRPG_Structure
                             _char.Char_stats.Strength += 1;
                             _char.Char_stats.Agility += 1;
                             _char.Char_stats.Perception += 1;
-                            _char.Char_stats.Mental -= 1;
+                            _char.Char_stats.Intelligence -= 1;
                             break;
                     } 
                     break;
@@ -103,19 +108,19 @@ namespace Sharnaka_Dev.TTRPG_Structure
                         {
                             case Races.Tiefflin_Aeris:
                                 _char.Char_stats.Agility += 1;
-                                _char.Char_stats.Perception -= 1;
+                                _char.Char_stats.Perception += 1;
                                 break;
                             case Races.Tiefflin_Akwo:
                                 _char.Char_stats.Mental += 1;
-                                _char.Char_stats.Intelligence -= 1;
+                                _char.Char_stats.Intelligence += 1;
                                 break;
                             case Races.Tiefflin_Litho:
                                 _char.Char_stats.Constitution += 1;
-                                _char.Char_stats.Dexterity -= 1;
+                                _char.Char_stats.Dexterity += 1;
                             break;
                             case Races.Tiefflin_Pyris:
                                 _char.Char_stats.Strength += 1;
-                                _char.Char_stats.Charisma -= 1;
+                                _char.Char_stats.Charisma += 1;
                                 break;
                     }
                     break;
