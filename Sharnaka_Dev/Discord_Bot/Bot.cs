@@ -1,5 +1,8 @@
 ﻿using NetCord.Logging;
 using NetCord.Gateway;
+using NetCord.Rest;
+using NetCord.Services;
+using NetCord.Services.ApplicationCommands;
 using NetCord;
 
 //<summary>
@@ -10,9 +13,10 @@ using NetCord;
 // </summary>
 public class DiscordBot
 {
-    GatewayClient client;
-    string token;   
-    DiscordBot()
+    private GatewayClient client;
+    private string token;   
+    public DiscordBot _instance { get; }
+    public DiscordBot()
     {
         this.token =
         (            
@@ -27,16 +31,19 @@ public class DiscordBot
             Logger = new ConsoleLogger(),
         });
 
-        StartBot();
+
+        _instance = this;
+        _ = StartBot();
     }
 
     // Async method to start the bot and keep it running indefinitely
-    async Task StartBot()
+    private async Task StartBot()
     {
         if (this.client != null)
         {
             await client.StartAsync();
             await Task.Delay(-1); // Keep the bot running indefinitely
+            
         }
         else
         {
