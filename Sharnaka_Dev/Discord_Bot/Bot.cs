@@ -1,9 +1,7 @@
-﻿using NetCord.Logging;
+﻿using NetCord;
+using NetCord.Logging;
 using NetCord.Gateway;
-using NetCord.Rest;
-using NetCord.Services;
-using NetCord.Services.ApplicationCommands;
-using NetCord;
+using Microsoft.Extensions.Configuration;
 
 //<summary>
 // This class represents a Discord bot that connects to the Discord API using the NetCord library.
@@ -16,14 +14,12 @@ public class DiscordBot
     private GatewayClient client;
     private string token;   
     public DiscordBot _instance { get; }
-    public DiscordBot()
+    public DiscordBot(IConfiguration configuration)
     {
-        this.token =
-        (            
-            // Read the token from a file or environment variable
-            // For example, you can read it from a file like this:
-            File.ReadAllText("appsettings.json").Trim()
-        );
+        
+        // Read the token from appsetins.json 
+        this.token = configuration["Discord:Token"]     
+            ?? throw new InvalidOperationException("Token not found in configuration. Please check the appsettings.json file.");
 
         // Get the token from the string and create a new GatewayClient with the token
         this.client = new(new BotToken(token), new GatewayClientConfiguration
@@ -31,7 +27,7 @@ public class DiscordBot
             Logger = new ConsoleLogger(),
         });
 
-
+        // could be removed since we already have a singleton instance of the bot, but we can keep it for now in case we want to have multiple instances of the bot in the future
         _instance = this;
         _ = StartBot();
     }
