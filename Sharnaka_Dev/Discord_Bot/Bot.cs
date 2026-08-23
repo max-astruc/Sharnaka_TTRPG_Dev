@@ -16,10 +16,15 @@ public class DiscordBot
     public DiscordBot _instance { get; }
     public DiscordBot(IConfiguration configuration)
     {
-        
-        // Read the token from appsetins.json 
+
+        // Read the token from user secrets and check if it is null or empty, if it is, throw an exception
         this.token = configuration["Discord:Token"]     
-            ?? throw new InvalidOperationException("Token not found in configuration. Please check the appsettings.json file.");
+            ?? throw new InvalidOperationException("Token not found in configuration. Please check the .NET user secrets.");
+
+        if (!token.Equals(null))
+        {
+            Console.WriteLine("Token found in configuration.");
+        }
 
         // Get the token from the string and create a new GatewayClient with the token
         this.client = new(new BotToken(token), new GatewayClientConfiguration
