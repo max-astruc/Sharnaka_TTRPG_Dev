@@ -3,8 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = Host.CreateApplicationBuilder(args);
-//var path = "C:\\Users\\ZEL\\source\\repos\\max-astruc\\Sharnaka_TTRPG_Dev\\Sharnaka_Dev\\Discord_Bot\\appsettings.json";
-//// Charge appsettings.json from folder  Discord_Bot
+
+
 
 // Adds the user secrets configuration source to the application configuration. This allows you to store sensitive information, such as API keys 
 builder.Configuration.AddUserSecrets<Program>();
@@ -18,4 +18,8 @@ var host = builder.Build();
 var bot = host.Services.GetRequiredService<DiscordBot>();
 
 // Bot runs indefinitely 
-await host.RunAsync();  
+await host.RunAsync();
+
+// Add the ApplicationCommandService to the DI container and populates the commands from the assembly containing the bot's commands.
+// This allows the bot to register and handle application commands (slash commands) with Discord.
+await bot.createAppCommands();
