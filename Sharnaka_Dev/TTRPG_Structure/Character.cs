@@ -8,56 +8,38 @@ namespace Sharnaka_Dev.TTRPG_Structure
 {
     internal class Character
     {
-        public string Char_name { get; set; }
-        public int Char_level { get; set; }
+        public string Char_name { get; set; } // Name of the character
+        public int Char_level { get; set; } // Level of experience of the character
 
-        public Species? Char_specie { get; set; }
-        public Races? Char_race { get; set; }
+        public Species? Char_specie { get; set; } // Specie of the character
+        public Races? Char_race { get; set; } // Race of the character within it's species
 
-        public Wallet? Char_wallet;
+        public Inventory? Char_inv; // Character's inventory
 
-        public Stats? Char_stats; 
-        public bool IsAlive { get; set; }
+        public Stats? Char_stats; // Character's stats
+        public bool IsAlive { get; set; } // Living status of the character, true if alive, false if dead
 
-        public Character() 
-        // Default constructor with default values, can be used for testing or non-interactible NPCs 
+        public bool IsNPC { get; set; } // Indicates if the character is an NPC (non-player character)
+
+
+        public Character(string name, int level, Species? specie, Races? race, Inventory? inv)
+        // Constructor that allows for setting all properties, including the wallet. Used for creating characters with specific starting money or for NPCs that have a wallet (eg : merchants/party members)
+        // Default values are included to avoid errors
         {
-            Char_name = "Default Name";
-            Char_level = 1;
-            Char_specie = null;
-            Char_race = null;
-            Char_wallet = null;
-            IsAlive = true;
-        }
-
-
-        public Character(string name, Species? specie,  Races? race)
-        // Constructor with minimal parameters, for creating characters with basic information ( ex: non interactible NPCs)
-        {
-            this.Char_name = name;
-            this.Char_level = 1; // Default level for new characters is set to 1, can be adjusted as needed.
-            this.Char_specie = specie;
-            this.Char_race = race;
-            this.Char_wallet = null; // Wallet is set to null by default, since it doesn't have to be implemented
-                                     // NTS : could be implemented for looting or stealing features, or merchants
-            this.IsAlive = true; // Characters are alive by default, can be set to false for certain NPCs or as a result of gameplay events.
-        }
-
-
-        public Character(string name, int level, Species? specie, Races? race, Wallet? wallet)
-        // Constructor that allows for setting all properties, including the wallet. This can be used for creating characters with specific starting money or for NPCs that have a wallet (eg : merchants/party members)
-        {
-            this.Char_name = name;
+            this.Char_name = name ?? "John NPC";
             this.Char_level = level;
             this.Char_specie = specie;
             this.Char_race = race;
-            this.Char_wallet = new Wallet();  
-            
+            this.Char_inv = inv ?? new Inventory();  // Use provided inventory or create a new one if none exists 
             this.IsAlive = true; // Characters are alive by default
-            SetCharacterStats(this); // Set the character's stats based on their species and race and attribute the stats to the character's Char_stats property.
+
+            GiveCharacterStats(this); // Set the character's base stats
         }
 
-        public void SetCharacterStats(Character _char)
+
+        
+        public void GiveCharacterStats(Character _char)
+        // Sets the character's base stats while taking in account species/race bonuses/maluses
         {
             _char.Char_stats = new Stats(); // Initialize stats for the character depending on race, can be adjusted to allow for custom stat values if needed.
 
@@ -142,6 +124,7 @@ namespace Sharnaka_Dev.TTRPG_Structure
 
         public Stats()
         {
+            // By default, stats are set to 10 then modified by species/race bonuses/maluses in the GiveCharacterStats method
             this.Strength = 10;
             this.Agility = 10;
             this.Dexterity = 10;
@@ -151,5 +134,10 @@ namespace Sharnaka_Dev.TTRPG_Structure
             this.Charisma = 10;
             this.Perception = 10;
         }
+    }
+
+    internal class Inventory
+    {
+        
     }
 }
