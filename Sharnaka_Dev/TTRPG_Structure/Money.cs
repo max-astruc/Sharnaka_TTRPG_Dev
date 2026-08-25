@@ -43,21 +43,36 @@ public class Wallet
         return $"{sharna} Sharna, {naka} Naka, {kato} Kato";
     }
 
-    public string GetBalanceKato() 
+    public string BalanceKatoToString()
     {
         return $"{balance} Kato";
     }
 
-    public string GetBalanceNaka()
+    public string BalanceNakaToString()
     {
         double nakaBalance = (double)balance / (int)Currency.Naka;
         return $"{nakaBalance} Naka";
     }
 
-    public string GetBalanceSharna()
+    public string BalanceSharnaToString()
     {
         double sharnaBalance = (double)balance / (int)Currency.Sharna;
         return $"{sharnaBalance} Sharna";
+    }
+
+    public int GetBalanceInKato()
+    {
+        return balance;
+    }
+
+    public double GetBalanceInNaka()
+    {
+        return (double)balance / (int)Currency.Naka;
+    }
+
+    public double GetBalanceInSharna()
+    {
+        return (double)balance / (int)Currency.Sharna;
     }
 }
 
