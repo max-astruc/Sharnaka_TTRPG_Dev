@@ -61,3 +61,21 @@ Litho +Constitution ou Dextérité
 Petite taille, carrure forte, cornes de bouc, yeux couleur gemme, cheveux couleur d’une gemme, peau couleur roche ou terre, Transmurale tactile
 Aritisan de renom, architecture, archéologie
 Métallurgie (Pyris) 
+
+
+12 pts de Répartition
+Stats     5    6   7    8   9 10  11  12  13  14  15  16
+Bonus  -3  -2  -2  -1  -1  0  0  +1  +1  +2  +2  +3
+Coût     -6  -4  -3  -2 -1  0  1   3    4   6    7    7*
+
+*7 pts de Répartition + bonus racial 
+Bonus racial par espèce:
+Tiefflin_Aeris +Aglité / Perception
+Tiefflin_Akwo +Mental / Intelligence
+Astrel +Mental et Agilité / Dextérité -Constitution
+Cycléides +Constitution et Mental / Force -Intelligence
+Murci_Hypsi +Force et Agilité / Perception. -Mental
+Joricien +Charisme et Intelligence / Force -Dextérité
+Murci_Lavia +Intelligence et Dextérité / Perception -Force
+Thiefflin_Litho + Constitution / Dextérité
+Thieflin_Pyris +Force / Charisme
