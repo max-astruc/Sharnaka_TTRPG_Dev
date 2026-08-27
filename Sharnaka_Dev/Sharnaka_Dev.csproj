@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Discord_Bot\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.7" />
     <PackageReference Include="NetCord" Version="1.0.0-alpha.489" />
     <PackageReference Include="NetCord.Hosting.AspNetCore" Version="1.0.0-alpha.489" />

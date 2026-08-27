@@ -25,6 +25,7 @@ public class DiscordBot
     private GatewayClient client;
     private string token;   
     public DiscordBot _instance { get; }
+    public required ApplicationCommandService<ApplicationCommandContext> applicationCommandService;
     public DiscordBot(IConfiguration configuration)
     {
 
@@ -55,6 +56,8 @@ public class DiscordBot
     // Async method to start the bot and keep it running indefinitely
     private async Task StartBot()
     {
+        await this.createAppCommands();
+
         if (this.client != null)
         {
             await client.StartAsync();
@@ -71,12 +74,7 @@ public class DiscordBot
     public async Task createAppCommands()
     {
         // Create the application command service
-        ApplicationCommandService<ApplicationCommandContext> applicationCommandService = new();
-
-        // Add commands using minimal APIs
-        applicationCommandService.AddSlashCommand(new SlashCommandBuilder("ping", "Ping!", () => "Pong!"));
-        applicationCommandService.AddUserCommand(new UserCommandBuilder("Username", (User user) => user.Username));
-        applicationCommandService.AddMessageCommand(new MessageCommandBuilder("Length", (RestMessage message) => message.Content.Length.ToString()));
+        applicationCommandService = new();
 
         // Add commands from modules
         applicationCommandService.AddModules(typeof(Program).Assembly);
@@ -105,7 +103,7 @@ public class DiscordBot
             }
         };
 
-        // Register the slash commands within the Discord client 
+        // Register the commands withint the Discord client 
         await applicationCommandService.RegisterCommandsAsync(client.Rest, client.Id);
     }
 }
