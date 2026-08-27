@@ -42,7 +42,7 @@ namespace Sharnaka_Dev.Discord_Bot.Modules
         public static string RollDM10()
         {
             Random random = new();
-            return (random.Next(0, 9) * 10).ToString();
+            return (random.Next(0, 10) * 10).ToString();
         }
     }
 }

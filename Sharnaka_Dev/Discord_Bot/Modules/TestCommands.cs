@@ -10,8 +10,8 @@ namespace Sharnaka_Dev.Discord_Bot.Modules
         [SlashCommand("ping", "Says back Pong !")]
         public static string Ping() => "Pong !";
 
-        [SlashCommand("salut", "Salutes a user")]
-        public string Salut(User user)
+        [SlashCommand("salute", "Salutes a user")]
+        public string Salute(User user)
             => $"{Context.User} says hello to {user} !";
     }
 }

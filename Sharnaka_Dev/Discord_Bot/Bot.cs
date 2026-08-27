@@ -56,6 +56,7 @@ public class DiscordBot
     // Async method to start the bot and keep it running indefinitely
     private async Task StartBot()
     {
+        // Create the commands for the bot
         await this.createAppCommands();
 
         if (this.client != null)
