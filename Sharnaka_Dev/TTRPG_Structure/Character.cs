@@ -11,6 +11,7 @@
         public Item[] Char_inv; // Character's inventory
 
         public Stats? Char_stats; // Character's stats
+
         public bool IsAlive { get; set; } // Living status of the character, true if alive, false if dead
 
         public bool IsNPC { get; set; } // Indicates if the character is an NPC (non-player character)
@@ -29,11 +30,10 @@
             this.Char_level = level;
             this.Char_specie = specie;
             this.Char_race = race;
-            this.Char_inv = inv ?? new Item[0]; // Use provided inventory or create a new one if none exists
+            this.Char_inv = inv ?? new Item[2048]; // Use provided inventory or create a new one if none exists
             this.IsAlive = true; // Characters are alive by default
 
-
-            this.Char_inv[(Char_inv.Length - 1)] = new Wallet();
+            this.Char_inv[(Char_inv.Length - 1)] = new Wallet(); // Adding a wallet as the last slot of the inventory (for simplicity) 
 
 
 

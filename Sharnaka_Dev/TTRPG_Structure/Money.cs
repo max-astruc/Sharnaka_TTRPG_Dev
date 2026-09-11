@@ -12,34 +12,51 @@ using System.ComponentModel.DataAnnotations.Schema;
 //  NTS : In the future, we may want to implement features such as transaction history, support for multiple wallets per character, or the ability to transfer money between wallets. 
 //  For now, this class focuses on basic wallet functionality.
 //  Additionally, we may consider higher value currencies and werther we should only cast them as a new amount of Sharna or add them to the enumeraiton as needed. For now, we will stick to the three defined currencies and their exchange rates.
+//
+//</sumary>
 
 
 internal class Wallet : Item
 {
+    static readonly Random random = new Random(); // Random number generator for rolling money  
     int balance; // Balance of the wallet in the smallest currency (Kato)
 
-    public Wallet() : base("Wallet")
+    public Wallet(int? initialBalance = null) : base("Wallet")
     {
-        balance = 0; // Initialize balance to zero
+        balance = initialBalance ?? RollMoney(); // Initialize balance with the rules regarding starting balance or with the provided value 
 
-        //Adding a D20 roll for the amount of money in Naka
 
-        //Adding a D100 roll for the amount of money in Kato
+        int RollMoney() // Adds the money reagarding the rules of starting balance for a playable character (D20 for Naka and D100 for Kato) and returns the total balance in Kato
+        {
+            // Adding a D20 roll for the amount of money in Naka
+            AddMoney(random.Next(1, 21) * (int)Currency.Naka);
+
+            // Adding a D100 roll for the amount of money in Kato
+            AddMoney(random.Next(1, 101) * (int)Currency.Kato);
+
+            return balance;
+        }
     }
 
     public void AddMoney(int katoAmount)
     {
+        // Ensure that the amount added is not negative
         if (katoAmount < 0)
             throw new ArgumentException("Amount added cannot be negative.");
+
+        // Add the amount to the balance
         balance += katoAmount;
     }
 
     public void RemoveMoney(int katoAmount)
     {
+        // Ensure that the amount removed is not negative and does not exceed the current balance
         if (katoAmount < 0)
             throw new ArgumentException("Amount cannot be negative.");
         if (katoAmount > balance)
             throw new InvalidOperationException("Not enough funds, debt cannot be added.");
+
+        // Remove the amount from the balance 
         balance -= katoAmount;
     }
 
