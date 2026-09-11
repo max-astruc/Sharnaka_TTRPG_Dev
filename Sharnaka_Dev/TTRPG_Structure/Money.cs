@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sharnaka_Dev.TTRPG_Structure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,20 +14,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 //  Additionally, we may consider higher value currencies and werther we should only cast them as a new amount of Sharna or add them to the enumeraiton as needed. For now, we will stick to the three defined currencies and their exchange rates.
 
 
-public class Wallet
+internal class Wallet : Item
 {
     int balance; // Balance of the wallet in the smallest currency (Kato)
 
-    public Wallet()
+    public Wallet() : base("Wallet")
     {
         balance = 0; // Initialize balance to zero
+
+        //Adding a D20 roll for the amount of money in Naka
+
+        //Adding a D100 roll for the amount of money in Kato
     }
+
     public void AddMoney(int katoAmount)
     {
         if (katoAmount < 0)
             throw new ArgumentException("Amount added cannot be negative.");
         balance += katoAmount;
     }
+
     public void RemoveMoney(int katoAmount)
     {
         if (katoAmount < 0)
@@ -35,6 +42,7 @@ public class Wallet
             throw new InvalidOperationException("Not enough funds, debt cannot be added.");
         balance -= katoAmount;
     }
+
     public string GetBalanceFull()
     {
         int sharna = balance / (int)Currency.Sharna;

@@ -8,15 +8,20 @@
         public Species? Char_specie { get; set; } // Specie of the character
         public Races? Char_race { get; set; } // Race of the character within it's species
 
-        public Inventory? Char_inv; // Character's inventory
+        public Item[] Char_inv; // Character's inventory
 
         public Stats? Char_stats; // Character's stats
         public bool IsAlive { get; set; } // Living status of the character, true if alive, false if dead
 
         public bool IsNPC { get; set; } // Indicates if the character is an NPC (non-player character)
 
+        public short VoluntyPoints { get; set; }
 
-        public Character(string name, int level, Species? specie, Races? race, Inventory? inv)
+        public short Fortune { get; set; }
+
+
+
+        public Character(string name, int level, Species? specie, Races? race, Item[]? inv)
         // Constructor that allows for setting all properties, including the wallet. Used for creating characters with specific starting money or for NPCs that have a wallet (eg : merchants/party members)
         // Default values are included to avoid errors
         {
@@ -24,9 +29,15 @@
             this.Char_level = level;
             this.Char_specie = specie;
             this.Char_race = race;
-            this.Char_inv = inv ?? new Inventory();  // Use provided inventory or create a new one if none exists 
+            this.Char_inv = inv ?? new Item[0]; // Use provided inventory or create a new one if none exists
             this.IsAlive = true; // Characters are alive by default
 
+
+            this.Char_inv[(Char_inv.Length - 1)] = new Wallet();
+
+
+
+            
             GiveCharacterStats(this); // Set the character's base stats
         }
 
@@ -130,8 +141,4 @@
         }
     }
 
-    internal class Inventory
-    {
-        
-    }
 }
