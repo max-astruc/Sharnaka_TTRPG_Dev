@@ -14,7 +14,8 @@ namespace Sharnaka_Dev.Discord_Bot.Modules
         public static string Roll(int faces)
         {
             Random random = new();
-            return random.Next(1, faces + 1).ToString();
+            var result = random.Next(1, faces + 1).ToString();
+            return $"The {faces} sided dice rolled out a : {result} ";
         }
 
         [SlashCommand("roll-d4", "Rolls a 4-sided die")]
