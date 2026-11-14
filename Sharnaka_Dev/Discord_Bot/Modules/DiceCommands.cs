@@ -39,6 +39,14 @@ namespace Sharnaka_Dev.Discord_Bot.Modules
         [SlashCommand("roll-d100", "Rolls a 100-sided die")]
         public static string RollD100() => Roll(100);
 
+        [SlashCommand("flip-coin", "Flips a coin and returns either heads or tails.")]
+        public static string FlipCoin()
+        {
+            Random random = new();
+            var result =  random.Next(1, 3) == 1 ? "Heads" : "Tails";
+            return $"Coin landed on : {result}";
+        }
+
         [SlashCommand("roll-d-m10", "Rolls a 10-sided die with multiples of ten (00, 10, 20, ...)")]
         public static string RollDM10()
         {

@@ -10,8 +10,6 @@ using Sharnaka_Dev.Services;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-
-
 // Adds the user secrets configuration source to the application configuration to acces the token. 
 builder.Configuration.AddUserSecrets<Program>();
 
